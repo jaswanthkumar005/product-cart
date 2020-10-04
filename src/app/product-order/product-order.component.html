@@ -1,0 +1,19 @@
+<div class="container" *ngIf="orderedList.length>0">
+<h4>shopping cart</h4>
+
+<div *ngIf="orderedList">
+  <ng-container *ngFor="let product of orderedList">
+    <div class="d-flex justify-content-between border" *ngIf="product.productName && product.
+    availableQuantity >= 0" style="width: 18rem;">
+
+        <div class="p-2">
+          {{product.productName}} (<span>{{product.num}}</span>)
+        </div>
+      <!-- <input class="p-2" type="number" [(ngModel)]="product.num" min="0" />-->
+
+        <div class="p-2 btn btn-danger rounded-0" (click)="removeItem(product)">x</div>
+     </div>
+    </ng-container>
+</div>
+<div class="btn btn-primary mt-5" (click)="checkoutOrder()" >Place Order</div>
+</div>

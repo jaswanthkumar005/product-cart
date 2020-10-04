@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <div class="row mt-2">
+    <div class="col-12 col-sm-8 col-md-6 col-lg-4 mx-auto">
+
+      <div class="card">
+        <div class="card-header">
+            <strong>Enter Product Details</strong>
+
+        </div>
+        <div class="card-body">
+            <div class="row">
+              <form (ngSubmit) = "postProduct(f)" #f="ngForm">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="productName">Product Name</label>
+                        <input class="form-control" name="productName"  ngModel type="text" placeholder="Enter Product Name" required #prodName = "ngModel">
+                        <span class="help-block" *ngIf="!prodName.valid
+                  && prodName.touched">please enter valid product name</span>
+                    </div>
+
+              <div class="form-group">
+                <label for="quantity">quantity</label>
+                <input class="form-control" name="quantity"  ngModel type="number" placeholder="quantity" min="1" pattern="^[0-9]*$" required #quantity="ngModel">
+                <span class="help-block" *ngIf="(!quantity.valid
+                  && quantity.touched )||(quantity.value <= 0 && quantity.touched) ">Enter Valid quantity</span>
+            </div>
+          <button type="submit" class="btn btn-primary" [disabled]="f.invalid"
+          >Submit</button>
+        </div>
+              </form>
+          </div>
+            </div>
+      </div>
+
+  </div>
+</div>
