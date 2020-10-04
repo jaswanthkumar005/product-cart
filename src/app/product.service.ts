@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Product} from './product.model';
 import { Subject } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,11 @@ export class ProductService {
   products:Product[]=[];
   private ordersUpdated = new Subject<Product[]>();
   private postProducts = new Subject<Product[]>();
-  constructor(private http:HttpClient) { }
+  constructor(
+    private http:HttpClient,
+    private route:Router,
+    private activateRoute: ActivatedRoute
+    ) { }
 
   getProduct(){
     return this.http.get<Product>("https://uiexercise.onemindindia.com/api/Product");
@@ -62,15 +67,17 @@ export class ProductService {
   postProd(createProduct){
    this.http.post<any>("https://uiexercise.onemindindia.com/api/Product",createProduct).subscribe((message) => {
      console.log(message);
-     alert("New product added");
+
    })
   }
 
   postOrder(orders){
     this.http.post<any>("https://uiexercise.onemindindia.com/api/OrderProducts",orders).subscribe((product) =>{
       console.log(product);
-      alert("Order recived");
+
       this.ordersUpdated.next([]);
+      this.orderedProduct = [];
+      this.route.navigate(['/'],{relativeTo:this.activateRoute});
     },
     (error) => {
       console.log(error);
