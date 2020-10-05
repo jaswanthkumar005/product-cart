@@ -2,7 +2,10 @@
   <div class="row mb-4">
     <div class="col-md-5 col-lg-6 col-xl-5"  >
        <h4>Product List</h4>
-      <ng-container *ngFor="let product of products">
+      <ng-container *ngFor="let product of products | paginate: {id:'listing_pagination',
+      itemsPerPage:5,
+      currentPage:page,
+       totalItems:totalRecords}">
         <div class="d-flex justify-content-between border" *ngIf="product.productName && product.
         availableQuantity > 0" style="width: 18rem;">
 
@@ -13,8 +16,11 @@
             <div class="p-2 " >
               <button class="btn btn-primary rounded-0" (click)="addProductToCart(product)">Add to Cart+ </button></div>
          </div>
-        </ng-container>
 
+        </ng-container>
+       <div>
+         <pagination-controls id="listing_pagination" maxSize=5 directionLinks="true" (pageChange)="page = $event" ></pagination-controls>
+       </div>
     </div>
     <div class="ml-5 col-md-5 col-lg-6 col-xl-5">
 

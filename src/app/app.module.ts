@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductOrderComponent } from './product-order/product-order.component';
 import { ProductCreateComponent } from './product-create/product-create.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
@@ -22,6 +23,7 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    NgxPaginationModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
