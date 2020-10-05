@@ -9,6 +9,7 @@ import { PaginationControlsComponent } from 'ngx-pagination';
 })
 export class ProductListComponent implements OnInit {
    products:any;
+   searchKeyword:string;
    data:Array<any>;
    totalRecords:Number;
    page:Number = 1;
@@ -21,7 +22,7 @@ export class ProductListComponent implements OnInit {
     this.products = product ;
     console.log(this.products,"ptob")
     const filteredItem = this.products.filter((product) => {
-     return product.productName || product.availableQuantity > 0;
+     return  product.availableQuantity > 0;
     })
     this.products = filteredItem;
     this.data = filteredItem;
